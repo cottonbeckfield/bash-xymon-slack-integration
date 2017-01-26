@@ -17,10 +17,22 @@ Example:
 /etc/xymon/scripts/xymon_to_slack.sh
 ```
 
+Make sure to update the following variable in the script with your Slack Webhook URL:
+```
+url="[WEBHOOKURL]"
+```
+
 # Updating alerts.cfg
 Update the alerts.cfg and call the script on the Hosts you want. In this case, I'm applying it to all hosts.
 
-Example:
+Example(s):
 ```HOST=*
-  SCRIPT /usr/local/xymon/server/etc/scripts/xymon_to_slack.sh uis_alerts DURATION>10
+  SCRIPT /usr/local/xymon/server/etc/scripts/xymon_to_slack.sh channel_name
+```
+
+You can configure additional Xymon settings on the same line. For instance, if you only want it to alert you
+for issues that have been going on longer than 10 minutes, you can put;
+
+```HOST=*
+  SCRIPT /usr/local/xymon/server/etc/scripts/xymon_to_slack.sh channel_name DURATION>10
 ```
